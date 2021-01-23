@@ -8,7 +8,7 @@ import (
 // Strain represents a Strain in Metrc.
 // See: https://api-ca.metrc.com/Documentation/#Strains.get_strains_v1_{id}
 type Strain struct {
-	Id               int     `json:"Id"`
+	Id               int     `json:"Id,omitempty"`
 	Name             string  `json:"Name"`
 	TestingStatus    string  `json:"TestingStatus"`
 	ThcLevel         float64 `json:"ThcLevel"`
