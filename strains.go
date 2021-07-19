@@ -61,9 +61,9 @@ func (m *Metrc) GetStrainsActive(licenseNumber *string) ([]Strain, error) {
 	return sr, nil
 }
 
-// CreateStrains creates new Strains.
+// PostStrainsCreate creates new Strains.
 // See: https://api-ca.metrc.com/Documentation/#Strains.post_strains_v1_create
-func (m *Metrc) CreateStrains(strains []Strain, licenseNumber *string) ([]byte, error) {
+func (m *Metrc) PostStrainsCreate(strains []Strain, licenseNumber *string) ([]byte, error) {
 	endpoint := "strains/v1/create"
 	if licenseNumber != nil {
 		endpoint += fmt.Sprintf("?licenseNumber=%s", *licenseNumber)
@@ -82,9 +82,9 @@ func (m *Metrc) CreateStrains(strains []Strain, licenseNumber *string) ([]byte, 
 	return resp, nil
 }
 
-// UpdateStrains updates existing Strains.
+// PostStrainsUpdate updates existing Strains.
 // See: https://api-ca.metrc.com/Documentation/#Strains.post_strains_v1_update
-func (m *Metrc) UpdateStrains(strains []Strain, licenseNumber *string) ([]byte, error) {
+func (m *Metrc) PostStrainsUpdate(strains []Strain, licenseNumber *string) ([]byte, error) {
 	endpoint := "strains/v1/update"
 	if licenseNumber != nil {
 		endpoint += fmt.Sprintf("?licenseNumber=%s", *licenseNumber)
