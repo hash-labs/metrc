@@ -44,7 +44,7 @@ func TestStrainsCreateUpdateDelete_Integration(t *testing.T) {
 			SativaPercentage: 75.0,
 		},
 	}
-	_, err := m.CreateStrains(strains, &licenseNumber)
+	_, err := m.PostStrainsCreate(strains, &licenseNumber)
 	assert.NoError(t, err)
 
 	// Get all active Strains, and then find the Id of the new Strain.

@@ -59,7 +59,7 @@ func TestLocationsCreateUpdateDelete_Integration(t *testing.T) {
 			TypeName: "Default Location Type",
 		},
 	}
-	_, err := m.CreateLocations(locs, &licenseNumber)
+	_, err := m.PostLocationsCreate(locs, &licenseNumber)
 	assert.NoError(t, err)
 
 	// Get all active Locations, and then find the Id of the new Location.
@@ -81,7 +81,7 @@ func TestLocationsCreateUpdateDelete_Integration(t *testing.T) {
 			TypeName: "Default Location Type",
 		},
 	}
-	_, err = m.UpdateLocations(locs, &licenseNumber)
+	_, err = m.PostLocationsUpdate(locs, &licenseNumber)
 	assert.NoError(t, err)
 
 	// Delete the Location using the ID.

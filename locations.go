@@ -95,9 +95,9 @@ func (m *Metrc) GetLocationsTypes(licenseNumber *string) ([]LocationGet, error) 
 	return lr, nil
 }
 
-// CreateLocations creates new locations.
+// PostLocationsCreate creates new locations.
 // See: https://api-ca.metrc.com/Documentation/#Locations.post_locations_v1_create
-func (m *Metrc) CreateLocations(locs []LocationPost, licenseNumber *string) ([]byte, error) {
+func (m *Metrc) PostLocationsCreate(locs []LocationPost, licenseNumber *string) ([]byte, error) {
 	endpoint := fmt.Sprintf("locations/v1/create")
 
 	if licenseNumber != nil {
@@ -117,9 +117,9 @@ func (m *Metrc) CreateLocations(locs []LocationPost, licenseNumber *string) ([]b
 	return resp, nil
 }
 
-// UpdateLocations updates existing Locations. Note that for this endpoint, `LocationPost.Id` is required in each `LocationPost` in the input slice.
+// PostLocationsUpdate updates existing Locations. Note that for this endpoint, `LocationPost.Id` is required in each `LocationPost` in the input slice.
 // See: https://api-ca.metrc.com/Documentation/#Locations.post_locations_v1_update
-func (m *Metrc) UpdateLocations(locs []LocationPost, licenseNumber *string) ([]byte, error) {
+func (m *Metrc) PostLocationsUpdate(locs []LocationPost, licenseNumber *string) ([]byte, error) {
 	endpoint := "locations/v1/update"
 	if licenseNumber != nil {
 		endpoint += fmt.Sprintf("?licenseNumber=%s", *licenseNumber)
