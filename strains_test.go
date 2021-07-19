@@ -70,6 +70,6 @@ func TestStrainsCreateUpdateDelete_Integration(t *testing.T) {
 			SativaPercentage: 75.0,
 		},
 	}
-	_, err = m.UpdateStrains(strains, &licenseNumber)
+	_, err = m.PostStrainsUpdate(strains, &licenseNumber)
 	assert.NoError(t, err)
 }
