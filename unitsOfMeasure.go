@@ -19,7 +19,7 @@ func (m *Metrc) GetUnitsOfMeasure() ([]UnitsOfMeasure, error) {
 	endpoint := "unitsofmeasure/v1/active"
 
 	var ur []UnitsOfMeasure
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return ur, fmt.Errorf("could not get units of measure: %s", err)
 	}

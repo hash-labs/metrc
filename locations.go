@@ -36,7 +36,7 @@ func (m *Metrc) GetLocationsById(id int, licenseNumber *string) (LocationGet, er
 	}
 
 	var lr LocationGet
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return lr, fmt.Errorf("could not get locations by id response: %s", err)
 	}
@@ -59,7 +59,7 @@ func (m *Metrc) GetLocationsActive(licenseNumber *string) ([]LocationGet, error)
 	}
 
 	var lr []LocationGet
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return lr, fmt.Errorf("could not get active locations from metrc: %s", err)
 	}
@@ -82,7 +82,7 @@ func (m *Metrc) GetLocationsTypes(licenseNumber *string) ([]LocationGet, error) 
 	}
 
 	var lr []LocationGet
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return lr, fmt.Errorf("could not get locations from types: %s", err)
 	}
@@ -110,7 +110,7 @@ func (m *Metrc) PostLocationsCreate(locs []LocationPost, licenseNumber *string) 
 	}
 
 	// TODO: Add more robust response handling.
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting locations: %s", err)
 	}
@@ -131,7 +131,7 @@ func (m *Metrc) PostLocationsUpdate(locs []LocationPost, licenseNumber *string) 
 	}
 
 	// TODO: Add more robust response handling.
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting locations: %s", err)
 	}
@@ -146,7 +146,7 @@ func (m *Metrc) DeleteLocationById(id int, licenseNumber *string) ([]byte, error
 		endpoint += fmt.Sprintf("?licenseNumber=%s", *licenseNumber)
 	}
 
-	resp, err := m.client.Delete(endpoint)
+	resp, err := m.Client.Delete(endpoint)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed deleting location %d: %s", id, err)
 	}

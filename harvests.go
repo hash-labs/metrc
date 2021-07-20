@@ -44,7 +44,7 @@ func (m *Metrc) GetHarvestsById(id int, licenseNumber *string) (Harvest, error) 
 	}
 
 	var hr Harvest
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return hr, fmt.Errorf("could not get harvests by id response: %s", err)
 	}
@@ -69,7 +69,7 @@ func (m *Metrc) getHarvestsByStatus(status string, licenseNumber string, lastMod
 	}
 
 	var hr []Harvest
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return hr, fmt.Errorf("could not get harvests by status response: %s", err)
 	}
@@ -127,7 +127,7 @@ func (m *Metrc) GetHarvestsWasteTypes() ([]HarvestWasteType, error) {
 	endpoint := "harvests/v1/waste/types"
 
 	var hwt []HarvestWasteType
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return hwt, fmt.Errorf("could not get harvest waste types response: %s", err)
 	}
@@ -182,7 +182,7 @@ func (m *Metrc) PostHarvestsCreatePackages(packages []HarvestPackagePost, licens
 		return []byte{}, fmt.Errorf("could not marshal harvest packages: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting packages: %s", err)
 	}
@@ -201,7 +201,7 @@ func (m *Metrc) PostHarvestsCreatePackagesTesting(packages []HarvestPackagePost,
 		return []byte{}, fmt.Errorf("could not marshal harvest testing packages: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting testing packages: %s", err)
 	}
@@ -229,7 +229,7 @@ func (m *Metrc) PutHarvestsMove(harvests []HarvestMove, licenseNumber string) ([
 		return []byte{}, fmt.Errorf("could not marshal move harvests: %s", err)
 	}
 
-	resp, err := m.client.Put(endpoint, body)
+	resp, err := m.Client.Put(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed putting harvests: %s", err)
 	}
@@ -258,7 +258,7 @@ func (m *Metrc) PostHarvestsRemoveWaste(wastes []HarvestRemoveWaste, licenseNumb
 		return []byte{}, fmt.Errorf("could not marshal remove wastes: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting remove wastes: %s", err)
 	}
@@ -285,7 +285,7 @@ func (m *Metrc) PutHarvestsRename(harvests []HarvestRename, licenseNumber string
 		return []byte{}, fmt.Errorf("could not marshal rename harvests: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting rename harvests: %s", err)
 	}
@@ -311,7 +311,7 @@ func (m *Metrc) PostHarvestsFinish(harvests []HarvestFinish, licenseNumber strin
 		return []byte{}, fmt.Errorf("could not marshal finish harvests: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting finish harvests: %s", err)
 	}
@@ -336,7 +336,7 @@ func (m *Metrc) PostHarvestsUnfinish(harvests []HarvestUnfinish, licenseNumber s
 		return []byte{}, fmt.Errorf("could not marshal unfinish harvests: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting unfinish harvests: %s", err)
 	}

@@ -96,7 +96,7 @@ func (m *Metrc) Facilities() ([]Facilities, error) {
 	endpoint := "facilities/v1"
 
 	var fr []Facilities
-	body, err := m.client.Get(endpoint)
+	body, err := m.Client.Get(endpoint)
 	if err != nil {
 		return fr, fmt.Errorf("could not get facilities response: %s", err)
 	}

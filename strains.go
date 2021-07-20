@@ -26,7 +26,7 @@ func (m *Metrc) GetStrainsById(id int, licenseNumber *string) (Strain, error) {
 	}
 
 	var sr Strain
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return sr, fmt.Errorf("could not get strains by id response: %s", err)
 	}
@@ -48,7 +48,7 @@ func (m *Metrc) GetStrainsActive(licenseNumber *string) ([]Strain, error) {
 	}
 
 	var sr []Strain
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return sr, fmt.Errorf("could not get active strains from metrc: %s", err)
 	}
@@ -75,7 +75,7 @@ func (m *Metrc) PostStrainsCreate(strains []Strain, licenseNumber *string) ([]by
 	}
 
 	// TODO: Add more robust response handling for posts.
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting strains: %s", err)
 	}
@@ -95,7 +95,7 @@ func (m *Metrc) PostStrainsUpdate(strains []Strain, licenseNumber *string) ([]by
 		return []byte{}, fmt.Errorf("could not marshal strains: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting strains: %s", err)
 	}
@@ -110,7 +110,7 @@ func (m *Metrc) DeleteStrainById(id int, licenseNumber *string) ([]byte, error) 
 		endpoint += fmt.Sprintf("?licenseNumber=%s", *licenseNumber)
 	}
 
-	resp, err := m.client.Delete(endpoint)
+	resp, err := m.Client.Delete(endpoint)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed deleting strain %d: %s", id, err)
 	}

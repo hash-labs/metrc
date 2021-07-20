@@ -43,7 +43,7 @@ func (m *Metrc) GetPlantsById(id int, licenseNumber *string) (Plant, error) {
 	}
 
 	var pr Plant
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return pr, fmt.Errorf("could not get plants by id response: %s", err)
 	}
@@ -65,7 +65,7 @@ func (m *Metrc) GetPlantsByLabel(label string, licenseNumber *string) (Plant, er
 	}
 
 	var pr Plant
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return pr, fmt.Errorf("could not get plants by label response: %s", err)
 	}
@@ -90,7 +90,7 @@ func (m *Metrc) getPlantsByStatus(status string, licenseNumber string, lastModif
 	}
 
 	var pr []Plant
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return pr, fmt.Errorf("could not get plants: %s", err)
 	}
@@ -155,7 +155,7 @@ func (m *Metrc) GetPlantsAdditives(licenseNumber string, lastModifiedStart *stri
 	}
 
 	var par []PlantAdditiveGet
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return par, fmt.Errorf("could not get plant additives: %s", err)
 	}
@@ -175,7 +175,7 @@ func (m *Metrc) GetPlantsGrowthPhases(licenseNumber string) ([]string, error) {
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
 	var phases []string
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return phases, fmt.Errorf("could not get growth phases: %s", err)
 	}
@@ -195,7 +195,7 @@ func (m *Metrc) GetPlantsAdditivesTypes(licenseNumber string) ([]string, error) 
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
 	var types []string
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return types, fmt.Errorf("could not get additives types: %s", err)
 	}
@@ -221,7 +221,7 @@ func (m *Metrc) GetPlantsWasteMethods(licenseNumber string) ([]PlantWasteMethod,
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
 	var methods []PlantWasteMethod
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return methods, fmt.Errorf("could not get waste methods: %s", err)
 	}
@@ -248,7 +248,7 @@ func (m *Metrc) GetPlantsWasteReasons(licenseNumber string) ([]PlantWasteReason,
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
 	var reasons []PlantWasteReason
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return reasons, fmt.Errorf("could not get waste reasons: %s", err)
 	}
@@ -281,7 +281,7 @@ func (m *Metrc) PostPlantsMovePlants(movePlants []PlantMovePost, licenseNumber s
 		return []byte{}, fmt.Errorf("could not marshal package-locations: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting move-plants: %s", err)
 	}
@@ -310,7 +310,7 @@ func (m *Metrc) PostPlantsChangeGrowthPhases(changes []PlantChangeGrowthPhase, l
 		return []byte{}, fmt.Errorf("could not marshal growth phase changes: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting growth phase changes: %s", err)
 	}
@@ -342,7 +342,7 @@ func (m *Metrc) PostPlantsDestroy(plants []PlantDestroy, licenseNumber string) (
 		return []byte{}, fmt.Errorf("could not marshal plants to destroy: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting growth phase changes: %s", err)
 	}
@@ -382,7 +382,7 @@ func (m *Metrc) PostPlantsAdditives(additives []PlantAdditivePost, licenseNumber
 		return []byte{}, fmt.Errorf("could not marshal additives: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting additives: %s", err)
 	}
@@ -414,7 +414,7 @@ func (m *Metrc) PostPlantsCreatePlantings(plants []PlantCreatePlanting, licenseN
 		return []byte{}, fmt.Errorf("could not marshal create plantings: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting create plantings: %s", err)
 	}
@@ -449,7 +449,7 @@ func (m *Metrc) PostPlantsCreateBatchPackages(batches []PlantCreatePlantBatchPac
 		return []byte{}, fmt.Errorf("could not marshal create batch packages: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting create batch packages: %s", err)
 	}
@@ -480,7 +480,7 @@ func (m *Metrc) PostPlantsManicure(plants []PlantManicure, licenseNumber string)
 		return []byte{}, fmt.Errorf("could not marshal manicure plants: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting manicure plants: %s", err)
 	}
@@ -511,7 +511,7 @@ func (m *Metrc) PostPlantsHarvest(plants []PlantHarvest, licenseNumber string) (
 		return []byte{}, fmt.Errorf("could not marshal harvest plants: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting harvest plants: %s", err)
 	}

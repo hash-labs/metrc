@@ -117,7 +117,7 @@ func (m *Metrc) GetItemsById(id int, licenseNumber *string) (ItemGet, error) {
 	}
 
 	var ir ItemGet
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return ir, fmt.Errorf("could not get items by id response: %s", err)
 	}
@@ -139,7 +139,7 @@ func (m *Metrc) GetItemsActive(licenseNumber *string) ([]ItemGet, error) {
 	}
 
 	var ir []ItemGet
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return ir, fmt.Errorf("could not get active items from metrc: %s", err)
 	}
@@ -161,7 +161,7 @@ func (m *Metrc) GetItemsCategories(licenseNumber *string) ([]ItemCategory, error
 	}
 
 	var ic []ItemCategory
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return ic, fmt.Errorf("could not get item categories from metrc: %s", err)
 	}
@@ -188,7 +188,7 @@ func (m *Metrc) CreateItems(items []ItemPost, licenseNumber *string) ([]byte, er
 	}
 
 	// TODO: Add more robust response handling.
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting items: %s", err)
 	}
@@ -209,7 +209,7 @@ func (m *Metrc) UpdateItems(items []ItemPost, licenseNumber *string) ([]byte, er
 	}
 
 	// TODO: Add more robust response handling.
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting items: %s", err)
 	}
@@ -224,7 +224,7 @@ func (m *Metrc) DeleteItemById(id int, licenseNumber *string) ([]byte, error) {
 		endpoint += fmt.Sprintf("?licenseNumber=%s", *licenseNumber)
 	}
 
-	resp, err := m.client.Delete(endpoint)
+	resp, err := m.Client.Delete(endpoint)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed deleting item %d: %s", id, err)
 	}

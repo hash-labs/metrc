@@ -109,7 +109,7 @@ func (m *Metrc) GetPackagesById(id int, licenseNumber *string) (PackageGet, erro
 	}
 
 	var pr PackageGet
-	body, err := m.client.Get(endpoint)
+	body, err := m.Client.Get(endpoint)
 	if err != nil {
 		return pr, fmt.Errorf("could not get packages by id response: %s", err)
 	}
@@ -131,7 +131,7 @@ func (m *Metrc) GetPackagesByLabel(label string, licenseNumber *string) (Package
 	}
 
 	var pr PackageGet
-	body, err := m.client.Get(endpoint)
+	body, err := m.Client.Get(endpoint)
 	if err != nil {
 		return pr, fmt.Errorf("could not get packages by label response: %s", err)
 	}
@@ -175,7 +175,7 @@ func (m *Metrc) getPackages(endpointName string, licenseNumber string, lastModif
 	}
 
 	var pr []PackageGet
-	body, err := m.client.Get(endpoint)
+	body, err := m.Client.Get(endpoint)
 	if err != nil {
 		return pr, fmt.Errorf("could not get packages from metrc: %s", err)
 	}
@@ -194,7 +194,7 @@ func (m *Metrc) GetPackagesTypes() ([]string, error) {
 	endpoint := "packages/v1/types"
 
 	var types []string
-	resp, err := m.client.Get(endpoint)
+	resp, err := m.Client.Get(endpoint)
 	if err != nil {
 		return types, fmt.Errorf("failed to get types from metrc: %s", err)
 	}
@@ -213,7 +213,7 @@ func (m *Metrc) GetPackagesAdjustReasons(licenseNumber string) ([]PackageAdjustR
 	endpoint := fmt.Sprintf("packages/v1/adjust/reasons?licenseNumber=%s", licenseNumber)
 
 	var par []PackageAdjustReasons
-	resp, err := m.client.Get(endpoint)
+	resp, err := m.Client.Get(endpoint)
 	if err != nil {
 		return par, fmt.Errorf("failed to get packages adjust reasons: %s", err)
 	}
@@ -237,7 +237,7 @@ func (m *Metrc) CreatePackages(packages []PackagePost, licenseNumber string) ([]
 	}
 
 	// TODO: Add more robust response handling for posts.
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting packages: %s", err)
 	}
@@ -254,7 +254,7 @@ func (m *Metrc) CreatePackagesTesting(packages []PackagePost, licenseNumber stri
 		return []byte{}, fmt.Errorf("could not marshal packages: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting packages: %s", err)
 	}
@@ -271,7 +271,7 @@ func (m *Metrc) CreatePackagesPlantings(packages []PackagePost, licenseNumber st
 		return []byte{}, fmt.Errorf("could not marshal packages: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting packages: %s", err)
 	}
@@ -295,7 +295,7 @@ func (m *Metrc) ChangePackagesItem(packageItems []PackageItem, licenseNumber str
 		return []byte{}, fmt.Errorf("could not marshal package-items: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting package-items: %s", err)
 	}
@@ -320,7 +320,7 @@ func (m *Metrc) ChangePackagesNote(packageNotes []PackageNote, licenseNumber str
 		return []byte{}, fmt.Errorf("could not marshal package-notes: %s", err)
 	}
 
-	resp, err := m.client.Put(endpoint, body)
+	resp, err := m.Client.Put(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed putting package-notes: %s", err)
 	}
@@ -346,7 +346,7 @@ func (m *Metrc) ChangePackagesLocations(packageLocations []PackageLocation, lice
 		return []byte{}, fmt.Errorf("could not marshal package-locations: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting package-locations: %s", err)
 	}
@@ -375,7 +375,7 @@ func (m *Metrc) AdjustPackages(packageAdjusts []PackageAdjust, licenseNumber str
 		return []byte{}, fmt.Errorf("could not marshal package-adjusts: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting package-adjusts: %s", err)
 	}
@@ -400,7 +400,7 @@ func (m *Metrc) FinishPackages(packageFinishes []PackageFinish, licenseNumber st
 		return []byte{}, fmt.Errorf("could not marshal package-finishes: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting package-finishes: %s", err)
 	}
@@ -424,7 +424,7 @@ func (m *Metrc) UnfinishPackages(packageUnfinishes []PackageUnfinish, licenseNum
 		return []byte{}, fmt.Errorf("could not marshal package-unfinishes: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting package-unfinishes: %s", err)
 	}
@@ -451,7 +451,7 @@ func (m *Metrc) RemediatePackages(packageRemediates []PackageRemediate, licenseN
 		return []byte{}, fmt.Errorf("could not marshal package-remediates: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting package-remediates: %s", err)
 	}

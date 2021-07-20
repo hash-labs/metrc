@@ -11,7 +11,7 @@ func (m *Metrc) GetLabTestsStates() ([]string, error) {
 	endpoint := "labtests/v1/states"
 
 	var ltr []string
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return ltr, fmt.Errorf("could not get lab test states response: %s", err)
 	}
@@ -44,7 +44,7 @@ func (m *Metrc) GetLabTestsTypes() ([]LabTestType, error) {
 	endpoint := "labtests/v1/types"
 
 	var ltr []LabTestType
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return ltr, fmt.Errorf("could not get lab test types response: %s", err)
 	}
@@ -88,7 +88,7 @@ func (m *Metrc) GetLabTestsResults(packageId int, licenseNumber string) ([]LabTe
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
 	var ltr []LabTestResult
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return ltr, fmt.Errorf("could not get lab test results response: %s", err)
 	}
@@ -131,7 +131,7 @@ func (m *Metrc) PostLabTestsRecord(records []LabTestRecord, licenseNumber string
 		return []byte{}, fmt.Errorf("could not marshal lab test records: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed posting lab test results: %s", err)
 	}
@@ -158,7 +158,7 @@ func (m *Metrc) PutLabTestsDocument(documents []LabTestDocument, licenseNumber s
 		return []byte{}, fmt.Errorf("could not marshal lab test documents: %s", err)
 	}
 
-	resp, err := m.client.Put(endpoint, body)
+	resp, err := m.Client.Put(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed putting lab test documents: %s", err)
 	}
@@ -183,7 +183,7 @@ func (m *Metrc) PutLabTestsResultsRelease(packages []LabTestRecordResult, licens
 		return []byte{}, fmt.Errorf("could not marshal lab tests results: %s", err)
 	}
 
-	resp, err := m.client.Put(endpoint, body)
+	resp, err := m.Client.Put(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed putting lab test results release: %s", err)
 	}
