@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var m *Metrc = MakeIntegrationMetrc()
+var m *Metrc = MakeIntegrationMetrc(vendorKey, userKey)
 
 func TestFacilities_Integration(t *testing.T) {
 	resp, err := m.Facilities()

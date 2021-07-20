@@ -23,14 +23,18 @@ type ClientInterface interface {
 // HttpClient is a convenience client for raw HTTP calls.
 // Wraps a generic `http.Client` and implements `ClientInterface`.
 type HttpClient struct {
-	client *http.Client
+	client    *http.Client
+	vendorKey string
+	userKey   string
 }
 
 // MakeHttpClient lets external packages generate a wrapped HTTP client.
 // This exposes the internals used to call Metrc.
-func MakeHttpClient() *HttpClient {
+func MakeHttpClient(vendorKey string, userKey string) *HttpClient {
 	return &HttpClient{
-		client: &http.Client{},
+		client:    &http.Client{},
+		vendorKey: vendorKey,
+		userKey:   userKey,
 	}
 }
 
@@ -79,7 +83,7 @@ func (c *HttpClient) Put(endpoint string, body []byte) ([]byte, error) {
 
 // do is a boilerplate funtion that executes a request and returns a response.
 func (c *HttpClient) do(req *http.Request) ([]byte, error) {
-	req.SetBasicAuth(vendorKey, userKey)
+	req.SetBasicAuth(c.vendorKey, c.userKey)
 
 	resp, err := c.client.Do(req)
 	if err != nil {

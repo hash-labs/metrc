@@ -8,7 +8,7 @@ import (
 
 // TODO: Think about a testing strategy for the client that doesn't require Metrc calls.
 // At its core we want to confirm that we can make requests that have the basic auth header.
-var hc *HttpClient = MakeHttpClient()
+var hc *HttpClient = MakeHttpClient(vendorKey, userKey)
 
 func TestHttpClientGet(t *testing.T) {
 	endpoint := "facilities/v1"
