@@ -37,7 +37,7 @@ func (m *Metrc) GetPlantBatchesById(id int, licenseNumber *string) (PlantBatch, 
 	}
 
 	var pbr PlantBatch
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return pbr, fmt.Errorf("could not get plant batches by id response: %s", err)
 	}
@@ -61,7 +61,7 @@ func (m *Metrc) getPlantBatchesByStatus(status string, licenseNumber string, las
 	}
 
 	var pbr []PlantBatch
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return pbr, fmt.Errorf("could not get plant batches by status response: %s", err)
 	}
@@ -102,7 +102,7 @@ func (m *Metrc) GetPlantBatchesTypes() ([]string, error) {
 	endpoint := "plantbatches/v1/types"
 
 	var types []string
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return types, fmt.Errorf("could not get plant batches by status response: %s", err)
 	}
@@ -138,7 +138,7 @@ func (m *Metrc) PostPlantBatchesCreatePlantings(batches []PlantBatchPlanting, li
 		return []byte{}, fmt.Errorf("could not marshal batches: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post plant batches create plantings: %s", err)
 	}
@@ -176,7 +176,7 @@ func (m *Metrc) PostPlantBatchesCreatePackages(packages []PlantBatchPackage, lic
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post packages: %s", err)
 	}
@@ -207,7 +207,7 @@ func (m *Metrc) PostPlantBatchesSplit(batches []PlantBatchSplit, licenseNumber s
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}
@@ -226,7 +226,7 @@ func (m *Metrc) PostPlantBatchesCreatePackagesFromMotherPlant(packages []PlantBa
 		return []byte{}, fmt.Errorf("could not marshal json: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}
@@ -257,7 +257,7 @@ func (m *Metrc) PostPlantBatchesChangeGrowthPhase(batches []PlantBatchGrowthPhas
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}
@@ -284,7 +284,7 @@ func (m *Metrc) PutPlantBatchesMove(batches []PlantBatchMove, licenseNumber stri
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Put(endpoint, body)
+	resp, err := m.Client.Put(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}
@@ -325,7 +325,7 @@ func (m *Metrc) PostPlantBatchesAdditives(additives []PlantBatchAdditive, licens
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}
@@ -353,7 +353,7 @@ func (m *Metrc) PostPlantBatchesDestroy(batches []PlantBatchDestroy, licenseNumb
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}

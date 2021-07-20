@@ -3,7 +3,7 @@ package metrc
 // Metrc exposes the Metrc API endpoints to an external developer.
 // Implements MetrcInterface.
 type Metrc struct {
-	client ClientInterface
+	Client ClientInterface
 }
 
 // MetrcInterface specifies the methods through which an external developer can call the Metrc API.
@@ -73,6 +73,6 @@ type MetrcInterface interface {
 func MakeIntegrationMetrc(vendorKey string, userKey string) *Metrc {
 	var ci ClientInterface = MakeHttpClient(vendorKey, userKey)
 	return &Metrc{
-		client: ci,
+		Client: ci,
 	}
 }

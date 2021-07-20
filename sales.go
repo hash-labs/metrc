@@ -57,7 +57,7 @@ type SalesTransactionPost struct {
 // See: https://api-ca.metrc.com/Documentation/#Sales.get_sales_v1_customertypes
 func (m *Metrc) GetSalesCustomerTypes() ([]string, error) {
 	endpoint := "sales/v1/customertypes"
-	resp, err := m.client.Get(endpoint)
+	resp, err := m.Client.Get(endpoint)
 	if err != nil {
 		return []string{}, fmt.Errorf("could not get customer types: %s", err)
 	}
@@ -99,7 +99,7 @@ func (m *Metrc) GetSalesReceiptsActive(licenseNumber string, salesDateStart *str
 		endpoint += fmt.Sprintf("&lastModifiedEnd=%s", *lastModifiedEnd)
 	}
 
-	resp, err := m.client.Get(endpoint)
+	resp, err := m.Client.Get(endpoint)
 	if err != nil {
 		return []SalesReceiptGet{}, fmt.Errorf("could not get active receipts from metrc, license number %s: %s", licenseNumber, err)
 	}
@@ -142,7 +142,7 @@ func (m *Metrc) GetSalesReceiptsInactive(licenseNumber string, salesDateStart *s
 	}
 
 	var srr []SalesReceiptGet
-	resp, err := m.client.Get(endpoint)
+	resp, err := m.Client.Get(endpoint)
 	if err != nil {
 		return srr, fmt.Errorf("could not get active receipts from metrc: %s", err)
 	}
@@ -164,7 +164,7 @@ func (m *Metrc) GetSalesReceiptsById(id int, licenseNumber *string) (SalesReceip
 	}
 
 	var sr SalesReceiptGet
-	resp, err := m.client.Get(endpoint)
+	resp, err := m.Client.Get(endpoint)
 	if err != nil {
 		return sr, fmt.Errorf("could not get receipt from metrc: %s", err)
 	}
@@ -187,7 +187,7 @@ func (m *Metrc) PostSalesReceipts(receipts []SalesReceiptPost, licenseNumber str
 		return []byte{}, fmt.Errorf("could not marshal receipts: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post receipts: %s", err)
 	}
@@ -206,7 +206,7 @@ func (m *Metrc) PutSalesReceipts(receipts []SalesReceiptPost, licenseNumber stri
 		return []byte{}, fmt.Errorf("could not marshal receipts: %s", err)
 	}
 
-	resp, err := m.client.Put(endpoint, body)
+	resp, err := m.Client.Put(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post receipts: %s", err)
 	}
@@ -219,7 +219,7 @@ func (m *Metrc) PutSalesReceipts(receipts []SalesReceiptPost, licenseNumber stri
 func (m *Metrc) DeleteSalesReceiptsById(id int, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("sales/v1/receipts/%d?licenseNumber=%s", id, licenseNumber)
 
-	resp, err := m.client.Delete(endpoint)
+	resp, err := m.Client.Delete(endpoint)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not delete receipt with id %d, license number %s: %s", id, licenseNumber, err)
 	}
@@ -233,7 +233,7 @@ func (m *Metrc) GetSalesTransactions(licenseNumber string) ([]SalesTransactionGe
 	endpoint := fmt.Sprintf("sales/v1/transactions?licenseNumber=%s", licenseNumber)
 
 	var sts []SalesTransactionGet
-	resp, err := m.client.Get(endpoint)
+	resp, err := m.Client.Get(endpoint)
 	if err != nil {
 		return sts, fmt.Errorf("could not get sales transactions for license number %s: %s", licenseNumber, err)
 	}
@@ -252,7 +252,7 @@ func (m *Metrc) GetSalesTransactionsByDates(salesDateStart string, salesDateEnd 
 	endpoint := fmt.Sprintf("sales/v1/transactions/%s/%s?licenseNumber=%s", salesDateStart, salesDateEnd, licenseNumber)
 
 	var sts []SalesTransactionGet
-	resp, err := m.client.Get(endpoint)
+	resp, err := m.Client.Get(endpoint)
 	if err != nil {
 		return sts, fmt.Errorf("could not get sales transaction for license number %s, start date %s, end date %s: %s", licenseNumber, salesDateStart, salesDateEnd, err)
 	}
@@ -275,7 +275,7 @@ func (m *Metrc) PostSalesTransactions(transactions []SalesTransactionPost, date 
 		return []byte{}, fmt.Errorf("could not marshal sales transaction for license number %s, date %s: %s", licenseNumber, date, err)
 	}
 
-	_, err = m.client.Post(endpoint, body)
+	_, err = m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post sales transaction for license %s, date %s: %s", licenseNumber, date, err)
 	}
@@ -293,7 +293,7 @@ func (m *Metrc) PutSalesTransactions(transactions []SalesTransactionPost, date s
 		return []byte{}, fmt.Errorf("could not marshal sales transaction for license number %s, date %s: %s", licenseNumber, date, err)
 	}
 
-	_, err = m.client.Put(endpoint, body)
+	_, err = m.Client.Put(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not put sales transactions for license %s, date %s: %s", licenseNumber, date, err)
 	}

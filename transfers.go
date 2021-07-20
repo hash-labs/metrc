@@ -65,7 +65,7 @@ func (m *Metrc) getTransfersByStatus(status string, licenseNumber string, lastMo
 	}
 
 	var tr []Transfer
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get endpoint: %s", err)
 	}
@@ -141,7 +141,7 @@ func (m *Metrc) GetTransfersDeliveriesById(id int) ([]TransferDelivery, error) {
 	endpoint := fmt.Sprintf("transfers/v1/%d/deliveries", id)
 
 	var dr []TransferDelivery
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return dr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -168,7 +168,7 @@ func (m *Metrc) GetTransfersTransportersById(id int) ([]TransferTransporter, err
 	endpoint := fmt.Sprintf("transfers/v1/%d/transporters", id)
 
 	var tr []TransferTransporter
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -199,7 +199,7 @@ func (m *Metrc) GetTransfersTransportersDetailsById(id int) ([]TransferTransport
 	endpoint := fmt.Sprintf("transfers/v1/%d/transporters/details", id)
 
 	var tr []TransferTransporterDetails
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -262,7 +262,7 @@ func (m *Metrc) GetTransfersDeliveryPackages(id int) ([]TransferDeliveryPackage,
 	endpoint := fmt.Sprintf("transfers/v1/delivery/%d/packages", id)
 
 	var tr []TransferDeliveryPackage
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -290,7 +290,7 @@ func (m *Metrc) GetTransfersDeliveryPackagesWholesale(id int) ([]TransferDeliver
 	endpoint := fmt.Sprintf("transfers/v1/delivery/%d/packages/wholesale", id)
 
 	var tr []TransferDeliveryPackageWholesale
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -317,7 +317,7 @@ func (m *Metrc) GetTransfersDeliveryPackagesRequiredLabTestBatches(id int) ([]Tr
 	endpoint := fmt.Sprintf("transfers/v1/delivery/package/%d/requiredlabtestbatches", id)
 
 	var tr []TransferDeliveryPackageRequiredLabTestBatches
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -336,7 +336,7 @@ func (m *Metrc) GetTransfersDeliveryPackagesStates() ([]string, error) {
 	endpoint := "transfers/v1/delivery/packages/states"
 
 	var sr []string
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return sr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -427,7 +427,7 @@ func (m *Metrc) PostTransfersExternalIncoming(transfers []TransferExternalIncomi
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, body)
+	resp, err := m.Client.Post(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}
@@ -446,7 +446,7 @@ func (m *Metrc) PutTransfersExternalIncoming(transfers []TransferExternalIncomin
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Put(endpoint, body)
+	resp, err := m.Client.Put(endpoint, body)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}
@@ -460,7 +460,7 @@ func (m *Metrc) DeleteTransfersExternalIncoming(id int, licenseNumber string) ([
 	endpoint := "transfers/v1/external/incoming/%d"
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
-	resp, err := m.client.Delete(endpoint)
+	resp, err := m.Client.Delete(endpoint)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not delete: %s", err)
 	}
@@ -481,7 +481,7 @@ func (m *Metrc) GetTransfersTemplates(licenseNumber string, lastModifiedStart *s
 	}
 
 	var tr []Transfer
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -526,7 +526,7 @@ func (m *Metrc) GetTransfersTemplatesDeliveries(id int) ([]TransferTemplateDeliv
 	endpoint := fmt.Sprintf("transfers/v1/templates/%d/deliveries", id)
 
 	var tr []TransferTemplateDelivery
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -554,7 +554,7 @@ func (m *Metrc) GetTransfersTemplatesTransporters(id int) ([]TransferTemplateTra
 	endpoint := fmt.Sprintf("transfers/v1/templates/%d/transporters", id)
 
 	var tr []TransferTemplateTransporter
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -574,7 +574,7 @@ func (m *Metrc) GetTransfersTemplatesTransportersDetails(id int) ([]TransferTran
 	endpoint := fmt.Sprintf("transfers/v1/templates/%d/transporters/details", id)
 
 	var tr []TransferTransporterDetails
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -594,7 +594,7 @@ func (m *Metrc) GetTransfersTemplatesDeliveryPackages(id int) ([]TransferDeliver
 	endpoint := fmt.Sprintf("transfers/v1/templates/delivery/%d/packages", id)
 
 	var tr []TransferDeliveryPackage
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
@@ -670,7 +670,7 @@ func (m *Metrc) PostTransfersTemplates(transfers []TransferTemplate, licenseNumb
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Post(endpoint, responseBody)
+	resp, err := m.Client.Post(endpoint, responseBody)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not post body: %s", err)
 	}
@@ -690,7 +690,7 @@ func (m *Metrc) PutTransfersTemplates(transfers []TransferTemplate, licenseNumbe
 		return []byte{}, fmt.Errorf("could not marshal body: %s", err)
 	}
 
-	resp, err := m.client.Put(endpoint, responseBody)
+	resp, err := m.Client.Put(endpoint, responseBody)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not put body: %s", err)
 	}
@@ -704,7 +704,7 @@ func (m *Metrc) DeleteTransfersTemplates(id int, licenseNumber string) ([]byte, 
 	endpoint := fmt.Sprintf("transfers/v1/templates/%d", id)
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
-	resp, err := m.client.Delete(endpoint)
+	resp, err := m.Client.Delete(endpoint)
 	if err != nil {
 		return []byte{}, fmt.Errorf("could not delete: %s", err)
 	}
@@ -730,7 +730,7 @@ func (m *Metrc) GetTransfersTypes(licenseNumber string) ([]TransferType, error) 
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
 	var tr []TransferType
-	responseBody, err := m.client.Get(endpoint)
+	responseBody, err := m.Client.Get(endpoint)
 	if err != nil {
 		return tr, fmt.Errorf("could not get response: %s", err)
 	}
