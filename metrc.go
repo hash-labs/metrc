@@ -70,8 +70,8 @@ type MetrcInterface interface {
 	GetUnitsOfMeasure() ([]UnitsOfMeasure, error)
 }
 
-func MakeIntegrationMetrc() *Metrc {
-	var ci ClientInterface = MakeHttpClient()
+func MakeIntegrationMetrc(vendorKey string, userKey string) *Metrc {
+	var ci ClientInterface = MakeHttpClient(vendorKey, userKey)
 	return &Metrc{
 		client: ci,
 	}
