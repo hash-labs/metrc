@@ -174,9 +174,9 @@ func (m *Metrc) GetItemsCategories(licenseNumber *string) ([]ItemCategory, error
 	return ic, nil
 }
 
-// CreateItems creates new Items.
+// PostItemsCreate creates new Items.
 // See: https://api-ca.metrc.com/Documentation/#Items.post_items_v1_create
-func (m *Metrc) CreateItems(items []ItemPost, licenseNumber *string) ([]byte, error) {
+func (m *Metrc) PostItemsCreate(items []ItemPost, licenseNumber *string) ([]byte, error) {
 	endpoint := "items/v1/create"
 	if licenseNumber != nil {
 		endpoint += fmt.Sprintf("?licenseNumber=%s", *licenseNumber)
@@ -195,9 +195,9 @@ func (m *Metrc) CreateItems(items []ItemPost, licenseNumber *string) ([]byte, er
 	return resp, nil
 }
 
-// UpdateItems updates existing Items. Note that for this endpoint, `ItemPost.Id` is required in each `ItemPost` in the input slice.
+// PostItemsUpdate updates existing Items. Note that for this endpoint, `ItemPost.Id` is required in each `ItemPost` in the input slice.
 // See: https://api-ca.metrc.com/Documentation/#Items.post_items_v1_update
-func (m *Metrc) UpdateItems(items []ItemPost, licenseNumber *string) ([]byte, error) {
+func (m *Metrc) PostItemsUpdate(items []ItemPost, licenseNumber *string) ([]byte, error) {
 	endpoint := "items/v1/update"
 	if licenseNumber != nil {
 		endpoint += fmt.Sprintf("?licenseNumber=%s", *licenseNumber)

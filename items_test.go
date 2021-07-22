@@ -71,7 +71,7 @@ func TestItemsCreateUpdateDelete_Integration(t *testing.T) {
 		NumberOfDoses:                   2,
 	}
 	items := []ItemPost{item}
-	_, err := m.CreateItems(items, &licenseNumber)
+	_, err := m.PostItemsCreate(items, &licenseNumber)
 	assert.NoError(t, err)
 
 	// Get all active Items, and then find the Id of the new Item.
@@ -89,7 +89,7 @@ func TestItemsCreateUpdateDelete_Integration(t *testing.T) {
 	item.Id = itemId
 	item.Name = fmt.Sprintf("%d", rand.Int())
 	items = []ItemPost{item}
-	_, err = m.UpdateItems(items, &licenseNumber)
+	_, err = m.PostItemsUpdate(items, &licenseNumber)
 	assert.NoError(t, err)
 
 	// Delete the Item using the ID.
