@@ -226,9 +226,9 @@ func (m *Metrc) GetPackagesAdjustReasons(licenseNumber string) ([]PackageAdjustR
 	return par, nil
 }
 
-// CreatePackages creates new Packages.
+// PostPackagesCreate creates new Packages.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_create
-func (m *Metrc) CreatePackages(packages []PackagePost, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesCreate(packages []PackagePost, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/create?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packages)
@@ -244,9 +244,9 @@ func (m *Metrc) CreatePackages(packages []PackagePost, licenseNumber string) ([]
 	return resp, nil
 }
 
-// CreatePackagesTesting creates Packages for testing.
+// PostPackagesCreateTesting creates Packages for testing.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_create_testing
-func (m *Metrc) CreatePackagesTesting(packages []PackagePost, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesCreateTesting(packages []PackagePost, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/create/testing?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packages)
@@ -261,9 +261,9 @@ func (m *Metrc) CreatePackagesTesting(packages []PackagePost, licenseNumber stri
 	return resp, nil
 }
 
-// CreatePackagesPlanting creates Packages from Planting.
+// PostPackagesCreatePlanting creates Packages from Planting.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_create_plantings
-func (m *Metrc) CreatePackagesPlantings(packages []PackagePost, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesCreatePlantings(packages []PackagePost, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/create/plantings?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packages)
@@ -285,9 +285,9 @@ type PackageItem struct {
 	Item  string `json:"Item"`
 }
 
-// ChangePackagesItem changes the Item on a Package.
+// PostPackagesChangeItem changes the Item on a Package.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_change_item
-func (m *Metrc) ChangePackagesItem(packageItems []PackageItem, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesChangeItem(packageItems []PackageItem, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/change/item?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packageItems)
@@ -310,9 +310,9 @@ type PackageNote struct {
 	Note  string `json:"Note"`
 }
 
-// ChangePackagesNote changes the Note on a Package.
+// PutPackagesChangeNote changes the Note on a Package.
 // See: https://api-ca.metrc.com/Documentation/#Packages.put_packages_v1_change_note
-func (m *Metrc) ChangePackagesNote(packageNotes []PackageNote, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PutPackagesChangeNote(packageNotes []PackageNote, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/change/note?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packageNotes)
@@ -336,9 +336,9 @@ type PackageLocation struct {
 	MoveDate string `json:"MoveDate"`
 }
 
-// ChangePackagesLocation changes the Location on a Package.
+// PostPackagesChangeLocations changes the Location on a Package.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_change_locations
-func (m *Metrc) ChangePackagesLocations(packageLocations []PackageLocation, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesChangeLocations(packageLocations []PackageLocation, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/change/locations?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packageLocations)
@@ -365,9 +365,9 @@ type PackageAdjust struct {
 	ReasonNote       *string `json:"ReasonNote"`
 }
 
-// AdjustPackages changes adjustment metadata on a Package.
+// PostPackagesAdjust changes adjustment metadata on a Package.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_adjust
-func (m *Metrc) AdjustPackages(packageAdjusts []PackageAdjust, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesAdjust(packageAdjusts []PackageAdjust, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/adjust?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packageAdjusts)
@@ -390,9 +390,9 @@ type PackageFinish struct {
 	ActualDate string `json:"ActualDate"`
 }
 
-// FinishPackages finishes a Package.
+// PostPackagesFinish finishes a Package.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_finish
-func (m *Metrc) FinishPackages(packageFinishes []PackageFinish, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesFinish(packageFinishes []PackageFinish, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/finish?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packageFinishes)
@@ -414,9 +414,9 @@ type PackageUnfinish struct {
 	Label string `json:"Label"`
 }
 
-// UnfinishPackages unfinishes Packages.
+// PostPackagesUnfinish unfinishes Packages.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_unfinish
-func (m *Metrc) UnfinishPackages(packageUnfinishes []PackageUnfinish, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesUnfinish(packageUnfinishes []PackageUnfinish, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/unfinish?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packageUnfinishes)
@@ -441,9 +441,9 @@ type PackageRemediate struct {
 	Steps      string `json:"RemediationSteps"`
 }
 
-// RemediatePackages remediates Packages.
+// PostPackagesRemediate remediates Packages.
 // See: https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_remediate
-func (m *Metrc) RemediatePackages(packageRemediates []PackageRemediate, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PostPackagesRemediate(packageRemediates []PackageRemediate, licenseNumber string) ([]byte, error) {
 	endpoint := fmt.Sprintf("packages/v1/remediate?licenseNumber=%s", licenseNumber)
 
 	body, err := json.Marshal(packageRemediates)

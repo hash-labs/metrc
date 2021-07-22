@@ -15,16 +15,16 @@ type MetrcInterface interface {
 	GetItemsById(id int, licenseNumber *string) (ItemGet, error)
 	GetItemsActive(licenseNumber *string) ([]ItemGet, error)
 	GetItemsCategories(licenseNumber *string) ([]ItemCategory, error)
-	CreateItems(items []ItemPost, licenseNumber *string) ([]byte, error)
-	UpdateItems(items []ItemPost, licenseNumber *string) ([]byte, error)
+	PostItemsCreate(items []ItemPost, licenseNumber *string) ([]byte, error)
+	PostItemsUpdate(items []ItemPost, licenseNumber *string) ([]byte, error)
 	DeleteItemById(id int, licenseNumber *string) ([]byte, error)
 
 	// locations
 	GetLocationsById(id int, licenseNumber *string) (LocationGet, error)
 	GetLocationsActive(licenseNumber *string) ([]LocationGet, error)
 	GetLocationsTypes(licenseNumber *string) ([]LocationGet, error)
-	CreateLocations(locs []LocationPost, licenseNumber *string) ([]byte, error)
-	UpdateLocations(locs []LocationPost, licenseNumber *string) ([]byte, error)
+	PostLocationsCreate(locs []LocationPost, licenseNumber *string) ([]byte, error)
+	PostLocationsUpdate(locs []LocationPost, licenseNumber *string) ([]byte, error)
 	DeleteLocationById(id int, licenseNumber *string) ([]byte, error)
 
 	// packages
@@ -35,9 +35,9 @@ type MetrcInterface interface {
 	GetPackagesInactive(licenseNumber string, lastModifiedStart *string, lastModifiedEnd *string) ([]PackageGet, error)
 	GetPackagesTypes() ([]string, error)
 	GetPackagesAdjustReasons(licenseNumber string) ([]PackageAdjustReasons, error)
-	CreatePackages(packages []PackagePost, licenseNumber string) ([]byte, error)
-	CreatePackagesTesting(packages []PackagePost, licenseNumber string) ([]byte, error)
-	CreatePackagesPlantings(packages []PackagePost, licenseNumber string) ([]byte, error)
+	PostPackagesCreate(packages []PackagePost, licenseNumber string) ([]byte, error)
+	PostPackagesCreateTesting(packages []PackagePost, licenseNumber string) ([]byte, error)
+	PostPackagesCreatePlanting(packages []PackagePost, licenseNumber string) ([]byte, error)
 	ChangePackagesItem(packageItems []PackageItem, licenseNumber string) ([]byte, error)
 	ChangePackagesNote(packageNotes []PackageNote, licenseNumber string) ([]byte, error)
 	ChangePackagesLocations(packageLocations []PackageLocation, licenseNumber string) ([]byte, error)
@@ -62,8 +62,8 @@ type MetrcInterface interface {
 	// strains
 	GetStrainsById(id int, licenseNumber *string) (Strain, error)
 	GetStrainsActive(licenseNumber *string) ([]Strain, error)
-	CreateStrains(strains []Strain, licenseNumber *string) ([]byte, error)
-	UpdateStrains(strains []Strain, licenseNumber *string) ([]byte, error)
+	PostStrainsCreate(strains []Strain, licenseNumber *string) ([]byte, error)
+	PostStrainsUpdate(strains []Strain, licenseNumber *string) ([]byte, error)
 	DeleteStrainById(id int, licenseNumber *string) ([]byte, error)
 
 	// units of measure

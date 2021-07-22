@@ -88,7 +88,7 @@ func TestPackagesCreate_Integration(t *testing.T) {
 		},
 	}
 	packages := []PackagePost{wantPackage}
-	_, err := m.CreatePackagesTesting(packages, licenseNumber)
+	_, err := m.PostPackagesCreateTesting(packages, licenseNumber)
 	assert.NoError(t, err)
 
 	// Get the package with the label.
