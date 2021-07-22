@@ -106,6 +106,13 @@ type ItemCategory struct {
 	CanBeRemediated              bool   `json:"CanBeRemediated"`
 }
 
+// ItemBrand represents an Item Brand in Metrc.
+// See: https://api-ca.metrc.com/Documentation/#Items.get_items_v1_brands.GET
+type ItemBrand struct {
+	Name   string `json:"Name"`
+	Status string `json:"Status"`
+}
+
 // GetItemsById gets items with an ID.
 // See: https://api-ca.metrc.com/Documentation/#Items.get_items_v1_{id}
 func (m *Metrc) GetItemsById(id int, licenseNumber *string) (ItemGet, error) {
@@ -172,6 +179,26 @@ func (m *Metrc) GetItemsCategories(licenseNumber *string) ([]ItemCategory, error
 	}
 
 	return ic, nil
+}
+
+// GetItemsBrands retrieves the brands of items for the provided license number.
+// See: https://api-ca.metrc.com/Documentation/#Items.get_items_v1_brands.GET
+func (m *Metrc) GetItemsBrands(licenseNumber string) ([]ItemBrand, error) {
+	endpoint := "items/v1/brands"
+	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
+
+	var ib []ItemBrand
+	responseBody, err := m.Client.Get(endpoint)
+	if err != nil {
+		return ib, fmt.Errorf("could not get item brands from metrc: %s", err)
+	}
+
+	err = json.Unmarshal(responseBody, &ib)
+	if err != nil {
+		return ib, fmt.Errorf("could not unmarshal response: %s", err)
+	}
+
+	return ib, nil
 }
 
 // PostItemsCreate creates new Items.
