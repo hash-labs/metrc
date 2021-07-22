@@ -48,6 +48,12 @@ func TestItemsGetCategories_Integration(t *testing.T) {
 	assert.True(t, foundName)
 }
 
+func TestItemsGetBrands_Integration(t *testing.T) {
+	brands, err := m.GetItemsBrands(licenseNumber)
+	assert.NoError(t, err)
+	fmt.Println(brands)
+}
+
 // Tests Create, Update, and Delete.
 // You have to GetActiveItems, find the created test item, and Update then Delete by ID.
 func TestItemsCreateUpdateDelete_Integration(t *testing.T) {
