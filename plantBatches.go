@@ -12,6 +12,7 @@ type PlantBatch struct {
 	Name                 string  `json:"Name"`
 	Type                 string  `json:"Type"`
 	LocationId           *int    `json:"LocationId"`
+	LocationName         *string `json:"LocationName"`
 	LocationTypeName     *string `json:"LocationTypeName"`
 	StrainId             *int    `json:"StrainId"`
 	StrainName           *string `json:"StrainName"`
