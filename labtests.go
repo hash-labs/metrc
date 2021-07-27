@@ -174,7 +174,7 @@ type LabTestResultRelease struct {
 
 // PutLabTestsResultsRelease puts test lab results for release.
 // See: https://testing-api-ca.metrc.com/Documentation#LabTests.put_labtests_v1_results_release.PUT
-func (m *Metrc) PutLabTestsResultsRelease(packages []LabTestRecordResult, licenseNumber string) ([]byte, error) {
+func (m *Metrc) PutLabTestsResultsRelease(packages []LabTestResultRelease, licenseNumber string) ([]byte, error) {
 	endpoint := "labtests/v1/results/release"
 	endpoint += fmt.Sprintf("?licenseNumber=%s", licenseNumber)
 
